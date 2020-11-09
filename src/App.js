@@ -1,6 +1,7 @@
 import "./css/App.css";
 import Query from "./Query";
 import React, { useEffect, useState } from "react";
+import Scrollbar from "react-smooth-scrollbar";
 
 function App() {
   const API_KEY = "4c397752e5cefdf86d36ee3e05ff8a23";
@@ -9,7 +10,9 @@ function App() {
   const [search, setSearch] = useState("");
   const [submit, setSubmit] = useState(" ");
   const [plot, setPlot] = useState("Movie");
-  const [content, setContent] = useState("GET TO KNOW ABOUT LATEST AND GREATEST BLOCKBUSTERS OF ALL TIME");
+  const [content, setContent] = useState(
+    "GET TO KNOW ABOUT LATEST AND GREATEST BLOCKBUSTERS OF ALL TIME"
+  );
 
   useEffect(() => {
     if (plot === "Movie") getMovies();
@@ -40,6 +43,7 @@ function App() {
     e.preventDefault();
     setSubmit(search);
     setContent(search);
+    document.querySelector(".main-head").style.fontSize = "4.5rem";
 
     // console.log(plot);
     // setSearch("");
@@ -66,16 +70,23 @@ function App() {
         </form>
         <h1 className="main-head">{content}</h1>
       </div>
-      <div className="items-section">
-        {queries.map((query) => (
-          <Query
-            key={query.id}
-            title={query.title}
-            imgSrc={query.poster_path}
-            rating={query.vote_average}
-          />
-        ))}
-      </div>
+      <Scrollbar
+        damping="0.05"
+        renderByPixels="true"
+        continuousScrolling="true"
+        className="scroll"
+      >
+        <div className="items-section">
+          {queries.map((query) => (
+            <Query
+              key={query.id}
+              title={query.title}
+              imgSrc={query.poster_path}
+              rating={query.vote_average}
+            />
+          ))}
+        </div>
+      </Scrollbar>
     </div>
   );
 }

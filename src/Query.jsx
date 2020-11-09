@@ -1,9 +1,9 @@
 import React from "react";
 
 const Query = ({ title, imgSrc, rating }) => {
-  // if (imgSrc == null || title == null) {
-  //   return null;
-  // }
+  if (imgSrc == null || title == null) {
+    return null;
+  }
   return (
     <div className="query">
       <img

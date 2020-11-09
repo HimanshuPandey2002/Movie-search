@@ -9,13 +9,16 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.0",
+    "react-smooth-scrollbar": "^8.0.6",
+    "smooth-scrollbar": "^8.5.3",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-	"start": "BROWSER='google-chrome-stable' react-scripts start",
+    "start": "BROWSER='google-chrome-stable' react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "parcel react-scripts start"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
   }
 }
