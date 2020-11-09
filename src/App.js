@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/App.css";
 import Query from "./Query";
 import React, { useEffect, useState } from "react";
 
@@ -9,6 +9,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [submit, setSubmit] = useState(" ");
   const [plot, setPlot] = useState("Movie");
+  const [content, setContent] = useState("GET TO KNOW ABOUT LATEST AND GREATEST BLOCKBUSTERS OF ALL TIME");
 
   useEffect(() => {
     if (plot === "Movie") getMovies();
@@ -38,8 +39,10 @@ function App() {
   const getSearch = (e) => {
     e.preventDefault();
     setSubmit(search);
-    console.log(plot);
-    setSearch("");
+    setContent(search);
+
+    // console.log(plot);
+    // setSearch("");
   };
   const updatePlot = (e) => {
     setPlot(e.target.value);
@@ -47,30 +50,32 @@ function App() {
 
   return (
     <div className="App">
-      <form className="form" onSubmit={getSearch}>
-        <input
-          type="text"
-          className="title"
-          placeholder="Search Movies/web series"
-          value={search}
-          onChange={updateSearch}
-        />
-        <select id="choose" onChange={updatePlot}>
-          <option value="Movie">Movie</option>
-          <option value="Show">Show</option>
-        </select>
-        <button type="submit" className="submit">
-          Search
-        </button>
-      </form>
-      {queries.map((query) => (
-        <Query
-          key={query.id}
-          title={query.title}
-          imgSrc={query.poster_path}
-          rating={query.vote_average}
-        />
-      ))}
+      <div className="input-section">
+        <form className="form" onSubmit={getSearch}>
+          <input
+            type="text"
+            className="title"
+            placeholder="Search for Movies"
+            value={search}
+            onChange={updateSearch}
+          />
+
+          <button type="submit" className="submit">
+            {/* <i class="fas fa-search"></i> */}
+          </button>
+        </form>
+        <h1 className="main-head">{content}</h1>
+      </div>
+      <div className="items-section">
+        {queries.map((query) => (
+          <Query
+            key={query.id}
+            title={query.title}
+            imgSrc={query.poster_path}
+            rating={query.vote_average}
+          />
+        ))}
+      </div>
     </div>
   );
 }
